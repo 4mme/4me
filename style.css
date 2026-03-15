@@ -1,0 +1,421 @@
+/* =====================================================
+   基础 / Reset
+   ===================================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "PingFang SC", "Microsoft YaHei", sans-serif;
+    background:
+        radial-gradient(circle at 20% 0%, #16243d 0%, transparent 40%),
+        radial-gradient(circle at 80% 0%, #0e1a33 0%, transparent 45%),
+        linear-gradient(180deg, #050912, #020617);
+    color: #e5e7eb;
+}
+
+/* =====================================================
+   容器（仪表台）
+   ===================================================== */
+.container {
+    max-width: 1100px;
+    margin: 26px auto;
+    padding: 22px;
+    background:
+        linear-gradient(180deg, rgba(24,36,58,0.9), rgba(11,20,35,0.95));
+    border-radius: 24px;
+    box-shadow:
+        0 40px 120px rgba(0,0,0,0.65),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* =====================================================
+   Header（品牌区）
+   ===================================================== */
+.header {
+    padding: 34px 20px 28px;
+    text-align: center;
+    position: relative;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+}
+
+.header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 0 0 10px;
+    color: #60a5fa;
+}
+
+.server-info {
+    font-size: 13px;
+    color: #93a7c9;
+    opacity: 0.85;
+}
+
+/* =====================================================
+   主体
+   ===================================================== */
+.main {
+    padding: 30px 8px 8px;
+}
+
+/* =====================================================
+   卡片（模块）
+   ===================================================== */
+.card {
+    background:
+        linear-gradient(180deg, rgba(28,41,65,0.85), rgba(18,28,48,0.9));
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 22px;
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.035),
+        0 16px 40px rgba(0,0,0,0.45);
+}
+
+.card h2 {
+    margin: 0 0 16px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #c7d2fe;
+    letter-spacing: 1px;
+}
+
+/* =====================================================
+   状态区（核心）
+   ===================================================== */
+.status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.status-large {
+    position: relative;
+    padding: 18px;
+    border-radius: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1px;
+    overflow: hidden;
+}
+
+/* 已连接 */
+.status-large.connected {
+    background: linear-gradient(90deg, #123f2b, #0c2e20);
+    color: #3cff9a;
+    box-shadow:
+        0 0 0 1px rgba(60,255,154,0.35),
+        0 0 28px rgba(60,255,154,0.18);
+}
+
+/* 脉冲 */
+.status-large.connected::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(
+        circle,
+        rgba(60,255,154,0.35) 0%,
+        rgba(60,255,154,0.15) 35%,
+        rgba(60,255,154,0.05) 55%,
+        rgba(60,255,154,0) 70%
+    );
+    animation: pulseGreen 2.6s ease-out infinite;
+    pointer-events: none;
+}
+
+/* 未连接 */
+.status-large.disconnected {
+    background: linear-gradient(90deg, #3a1b1b, #241010);
+    color: #ff6b6b;
+    box-shadow:
+        0 0 0 1px rgba(255,107,107,0.3);
+}
+
+.status-large.disconnected::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(
+        circle,
+        rgba(255,107,107,0.35) 0%,
+        rgba(255,107,107,0.15) 35%,
+        rgba(255,107,107,0.05) 55%,
+        rgba(255,107,107,0) 70%
+    );
+    animation: pulseRed 3.4s ease-out infinite;
+    pointer-events: none;
+}
+
+/* =====================================================
+   按钮
+   ===================================================== */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 14px;
+    padding: 11px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #e5e7eb;
+    background: rgba(255,255,255,0.07);
+    transition: all 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background: rgba(255,255,255,0.16);
+    transform: translateY(-1px);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* 主按钮 */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 12px 28px rgba(59,130,246,0.45);
+}
+
+/* 危险 */
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #fff;
+}
+
+/* =====================================================
+   表单
+   ===================================================== */
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 14px;
+    background: #070d1b;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #e5e7eb;
+    font-size: 14px;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: #60a5fa;
+}
+
+/* =====================================================
+   日志（工程终端）
+   ===================================================== */
+.log {
+    background:
+        radial-gradient(circle at top, #0f172a, #020617);
+    border-radius: 16px;
+    padding: 14px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #9ddcff;
+    max-height: 280px;
+    overflow-y: auto;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* =====================================================
+   进度遮罩
+   ===================================================== */
+.progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2,6,23,0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.progress-container {
+    width: 340px;
+    background:
+        linear-gradient(180deg, #1a2640, #101a2b);
+    border-radius: 22px;
+    padding: 26px;
+    text-align: center;
+    box-shadow:
+        0 40px 100px rgba(0,0,0,0.75),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.progress-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 18px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #22d3ee);
+    border-radius: 999px;
+    transition: width 0.2s ease;
+}
+
+.progress-fill.indeterminate {
+    width: 40%;
+    animation: indeterminate 1.2s infinite ease-in-out;
+}
+
+/* =====================================================
+   动画
+   ===================================================== */
+@keyframes pulseGreen {
+    0% { transform: scale(0.6); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes pulseRed {
+    0% { transform: scale(0.6); opacity: 0; }
+    30% { opacity: 0.9; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes indeterminate {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(260%); }
+}
+
+/* =====================================================
+   移动端
+   ===================================================== */
+@media (max-width: 720px) {
+    .container {
+        margin: 12px;
+        padding: 16px;
+    }
+
+    .header h1 {
+        font-size: 26px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+}
+
+
+
+/* ================= 日志折叠 ================= */
+
+.log {
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.log.is-collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+}
+
+
+/* =====================================================
+   APK / 服务器选择下拉框美化
+   ===================================================== */
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: #1c1c1e;
+    color: #f2f2f7;
+
+    border: 1px solid #3a3a3c;
+    border-radius: 12px;
+
+    padding: 12px 40px 12px 14px;
+    font-size: 14px;
+    font-weight: 500;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #8e8e93 50%),
+        linear-gradient(135deg, #8e8e93 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) calc(50% - 3px),
+        calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+}
+
+/* Hover */
+select:hover {
+    border-color: #636366;
+}
+
+/* Focus（重点） */
+select:focus {
+    outline: none;
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 2px rgba(10, 132, 255, 0.35);
+}
+
+/* 禁用状态 */
+select:disabled {
+    opacity: 0.45;
+    background-color: #2c2c2e;
+}
+
+/* =====================================================
+   下拉项（展开后的 APK 列表）
+   ===================================================== */
+
+select option {
+    background-color: #2c2c2e;
+    color: #f2f2f7;
+    font-size: 14px;
+}
+
+/* 被选中的项 */
+select option:checked {
+    background-color: #0a84ff;
+    color: #ffffff;
+}
+
+/* Windows 下 hover（部分浏览器支持） */
+select option:hover {
+    background-color: #3a3a3c;
+}

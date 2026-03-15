@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>张张车机助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="webadb.js"></script>
+    <script src="download_progress.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>张张车机助手</h1>
+
+        <!-- ✅ 仅新增：工程密码显示容器 -->
+        <div class="server-info">
+            工程模式：
+            <span id="engineeringCode">----</span>
+            |
+            加密项：
+            <span id="encryptCode">----</span>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="card">
+            <h2>设备状态</h2>
+            <div class="status-row">
+                <div id="largeStatus" class="status-large disconnected">
+                    🔴 设备未连接
+                </div>
+
+                <div class="btn-group">
+                    <button id="btnAutoConnect" class="btn btn-primary">🚀 连接设备</button>
+                    <button id="btnSafeDisconnect" class="btn btn-danger" disabled>断开</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>必装应用</h2>
+            <div class="btn-group">
+                <button id="btnInstallQxg" class="btn">安装应用管家</button>
+                <button id="btnLaunchQxg" class="btn" disabled>▶ 启动应用管家</button>
+                <button id="btnInstallBd" class="btn">安装沙发管家</button>
+                <button id="btnInstallSidebar" class="btn">安装侧边栏</button>
+<!--                <button id="btnRunHiddenApi" class="btn btn-warning">⚙️风云T9一键授权</button> -->
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>可选安装应用</h2>
+            <select id="serverApkSelect"></select>
+            <div class="btn-group" style="margin-top:14px">
+                <button id="btnInstallServerApk" class="btn" disabled>
+                    安装选中 APK
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>本地安装应用</h2>
+            <input type="file" id="apkUpload" accept=".apk" />
+            <div class="btn-group" style="margin-top:14px">
+                <button id="btnUploadInstall" class="btn" disabled>
+                    本地安装
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 系统日志</h2>
+            <div id="logOutput" class="log"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ✅ 下载 / 安装进度遮罩 -->
+<div id="progressOverlay" class="progress-overlay">
+    <div class="progress-container">
+        <h3 id="progressTitle">处理中</h3>
+        <div id="progressText">请稍候…</div>
+
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <div id="authHint" style="display:none;margin-top:12px;color:#9ddcff">
+            请查看车机屏幕并允许 USB 调试
+        </div>
+    </div>
+</div>
+
+<script src="./webadb.js"></script>
+<script src="./download_progress.js"></script>
+<script src="./app.js"></script>
+<script src="./t9.js"></script>
+<script src="qxg_official.js"></script>
+
+<!-- ✅ 工程密码：最后加载 -->
+<script src="./password.js?v=1"></script>
+
+</body>
+</html>
